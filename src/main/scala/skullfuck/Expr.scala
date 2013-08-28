@@ -54,3 +54,13 @@ case object OutputData extends Expr {
     state.copy(output = outInt :: state.output)
   }
 }
+
+
+
+case object JumpInIf extends Expr {
+  //TODO
+}
+
+case object JumpOutIf extends Expr {
+  //TODO
+}

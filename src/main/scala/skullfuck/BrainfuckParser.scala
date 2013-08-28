@@ -23,7 +23,23 @@ class BrainfuckParser extends RegexParsers {
     OutputData
   }
 
-  def expr = (increment_p | decrement_p | increment_data | decrement_data | output_data)+
+  //def jump_in_if = "\\[".r ~> expr ^^ { x => //TODO on right side of "\\]" could consider ~ expr to get nesting?
+  //JumpInIf
+  //}
+
+  //  def jump_out_if = "\\]".r ~> expr ^^ { x =>
+  //    JumpOutIf
+  //  }
+
+  def jump_in_if = "\\[".r ^^ { x =>
+    JumpInIf
+  }
+
+  def jump_out_if = "\\]".r ^^ { x =>
+    JumpOutIf
+  }
+
+  def expr = (increment_p | decrement_p | increment_data | decrement_data | output_data | jump_in_if | jump_out_if)+
 
   case class StartExpr(startState: State) extends Expr {
     override def eval(state: State): State = startState
