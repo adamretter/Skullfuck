@@ -1,4 +1,4 @@
-package brainfuck
+package skullfuck
 
 import scala.util.parsing.combinator.RegexParsers
 

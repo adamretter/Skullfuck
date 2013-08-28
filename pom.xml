@@ -5,10 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
 
-  <name>Brainfuck</name>
+  <name>Scullfuck</name>
+  <description>Interpreter for the Brainfuck Language written in Scala</description>
 
-  <groupId>brainfuck</groupId>
-  <artifactId>BrainfuckVM</artifactId>
+  <groupId>skullfuck</groupId>
+  <artifactId>skullfuck</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <properties>

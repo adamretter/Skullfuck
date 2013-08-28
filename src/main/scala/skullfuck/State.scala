@@ -1,4 +1,4 @@
-package brainfuck
+package skullfuck
 
 /**
  * @param ptrData A pointer into the data, i.e. The Data Pointer

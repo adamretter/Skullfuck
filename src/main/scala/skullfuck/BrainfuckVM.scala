@@ -1,4 +1,4 @@
-package brainfuck
+package skullfuck
 
 object  BrainfuckVM extends App {
   val vm = new BrainfuckParser()

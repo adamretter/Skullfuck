@@ -1,4 +1,4 @@
-package brainfuck
+package skullfuck
 
 trait Expr {
   def eval(state: State) : State = state
