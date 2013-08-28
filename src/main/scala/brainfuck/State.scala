@@ -1,3 +1,7 @@
 package brainfuck
 
-case class State(dataPointer: Int, buffer: Array[Int], output: List[Int])
+/**
+ * @param ptrData A pointer into the data, i.e. The Data Pointer
+ * @param data An array of data cells
+ */
+case class State(ptrData: Int, data: Array[Byte], output: List[Int])
