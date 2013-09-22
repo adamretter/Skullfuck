@@ -1,7 +1,7 @@
 package skullfuck
 
 trait Expr {
-  def eval(state: State) : State = state
+  def eval(state: State) : State
 }
 
 trait ModifyDataPointerExpr extends Expr {
@@ -59,8 +59,10 @@ case object OutputData extends Expr {
 
 case object JumpInIf extends Expr {
   //TODO
+  def eval(state: State) = state
 }
 
 case object JumpOutIf extends Expr {
   //TODO
+  def eval(state: State) = state
 }
