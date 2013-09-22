@@ -4,10 +4,10 @@ import scala.util.parsing.combinator.RegexParsers
 
 class BrainfuckParser extends RegexParsers {
 
-  def increment_p = ">".r ^^ { x =>
+  def increment_ptr = ">".r ^^ { x =>
     IncrementDataPointer
   }
-  def decrement_p = "<".r ^^ { x =>
+  def decrement_ptr = "<".r ^^ { x =>
     DecrementDataPointer
   }
 
@@ -39,7 +39,7 @@ class BrainfuckParser extends RegexParsers {
     JumpOutIf
   }
 
-  def expr = (increment_p | decrement_p | increment_data | decrement_data | output_data | jump_in_if | jump_out_if)+
+  def expr = (increment_ptr | decrement_ptr | increment_data | decrement_data | output_data | jump_in_if | jump_out_if)+
 
   case class StartExpr(startState: State) extends Expr {
     override def eval(state: State): State = startState
