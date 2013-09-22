@@ -4,24 +4,20 @@ import scala.util.parsing.combinator.RegexParsers
 
 class BrainfuckParser extends RegexParsers {
 
-  def increment_ptr = ">".r ^^ { x =>
+  def increment_ptr = ">".r ^^^
     IncrementDataPointer
-  }
-  def decrement_ptr = "<".r ^^ { x =>
+
+  def decrement_ptr = "<".r ^^^
     DecrementDataPointer
-  }
 
-  def increment_data = "\\+".r ^^ { x =>
+  def increment_data = """\+""".r ^^^
      IncrementCell
-  }
 
-  def decrement_data = "\\-".r ^^ { x =>
+  def decrement_data = """\-""".r ^^^
     DecrementCell
-  }
 
-  def output_data = "\\.".r ^^ { x =>
+  def output_data = """\.""".r ^^^
     OutputData
-  }
 
   //def jump_in_if = "\\[".r ~> expr ^^ { x => //TODO on right side of "\\]" could consider ~ expr to get nesting?
   //JumpInIf
@@ -31,11 +27,11 @@ class BrainfuckParser extends RegexParsers {
   //    JumpOutIf
   //  }
 
-  def jump_in_if = "\\[".r ^^ { x =>
+  def jump_in_if = """\[""".r ^^ { x =>
     JumpInIf
   }
 
-  def jump_out_if = "\\]".r ^^ { x =>
+  def jump_out_if = """\]""".r ^^ { x =>
     JumpOutIf
   }
 
