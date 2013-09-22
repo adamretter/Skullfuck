@@ -39,11 +39,11 @@ trait ModifyDataExpr extends Expr {
 }
 
 case object IncrementCell extends ModifyDataExpr {
-  def modifyCell(cell: Byte): Byte = (cell + 1).asInstanceOf[Byte]
+  override def modifyCell(cell: Byte): Byte = (cell + 1).asInstanceOf[Byte]
 }
 
-case object DecrementCell extends Expr {
-  def modifyCell(cell: Byte): Byte = (cell - 1).asInstanceOf[Byte]
+case object DecrementCell extends ModifyDataExpr {
+  override def modifyCell(cell: Byte): Byte = (cell - 1).asInstanceOf[Byte]
 }
 
 
