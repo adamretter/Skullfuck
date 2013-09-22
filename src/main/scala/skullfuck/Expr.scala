@@ -10,11 +10,11 @@ trait ModifyDataPointerExpr extends Expr {
 }
 
 case object IncrementDataPointer extends ModifyDataPointerExpr {
-  def modifyDataPointer(ptrData: Int) = ptrData + 1
+  override def modifyDataPointer(ptrData: Int) = ptrData + 1
 }
 
-case object DecrementDataPointer extends Expr {
-  def modifyDataPointer(ptrData: Int) = if(ptrData > 0) ptrData - 1 //do not move past left-most cell //TODO else log warn!
+case object DecrementDataPointer extends ModifyDataPointerExpr {
+  override def modifyDataPointer(ptrData: Int) = if(ptrData > 0) ptrData - 1 else ptrData //do not move past left-most cell //TODO else log warn!
 }
 
 
