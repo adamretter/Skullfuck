@@ -18,7 +18,6 @@ case object DecrementDataPointer extends ModifyDataPointerExpr {
 }
 
 
-
 trait ModifyDataExpr extends Expr {
   def getOrCreateData(state: State) : Array[Byte] = {
     if(state.data.length <= state.ptrData)
@@ -47,7 +46,6 @@ case object DecrementCell extends ModifyDataExpr {
 }
 
 
-
 case object OutputData extends Expr {
   override def eval(state: State): State = {
     val outInt = state.data(state.ptrData)
@@ -56,13 +54,17 @@ case object OutputData extends Expr {
 }
 
 
-
-case object JumpInIf extends Expr {
-  //TODO
-  def eval(state: State) = state
-}
-
-case object JumpOutIf extends Expr {
-  //TODO
-  def eval(state: State) = state
+case class JumpIf(exprs : List[Expr]) extends Expr {
+  override def eval(state: State): State = {
+    if(state.data(state.ptrData) != 0) {
+      val newState = exprs.foldLeft(state)((a,b) => b.eval(a))
+      if(newState.data(newState.ptrData) != 0) {
+        eval(newState)
+      } else {
+        newState
+      }
+    } else {
+      state
+    }
+  }
 }
