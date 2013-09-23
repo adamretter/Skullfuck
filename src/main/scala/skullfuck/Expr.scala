@@ -1,6 +1,11 @@
 package skullfuck
 
+import grizzled.slf4j.Logger
+
+
 trait Expr {
+  lazy val logger = Logger[this.type]
+
   def eval(state: State) : State
 }
 
@@ -14,7 +19,15 @@ case object IncrementDataPointer extends ModifyDataPointerExpr {
 }
 
 case object DecrementDataPointer extends ModifyDataPointerExpr {
-  override def modifyDataPointer(ptrData: Int) = if(ptrData > 0) ptrData - 1 else ptrData //do not move past left-most cell //TODO else log warn!
+  override def modifyDataPointer(ptrData: Int) = {
+    if(ptrData > 0)
+      ptrData - 1
+    else {
+      //do not move past left-most cell
+      logger.warn("Cannot move past left-most cell, staying at left-most cell!")
+      ptrData
+    }
+  }
 }
 
 
