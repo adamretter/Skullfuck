@@ -41,7 +41,12 @@ trait ModifyDataPointerExpr extends Expr {
 }
 
 case object IncrementDataPointer extends ModifyDataPointerExpr {
-  override def modifyDataPointer(ptrData: Int) = ptrData + 1
+  override def modifyDataPointer(ptrData: Int) = {
+    if(ptrData == 29999) {
+      logger.warn("Exceeding 30,000 cells in the array!")
+    }
+    ptrData + 1
+  }
 }
 
 case object DecrementDataPointer extends ModifyDataPointerExpr {
